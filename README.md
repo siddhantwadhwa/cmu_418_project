@@ -48,7 +48,7 @@ The 2 of the above functions are only a small set of examples of the functions w
 ![classification](./readme_data/classification.png "classification")
 - **Object detection** : We could paralellize the process of object detection by the windowed application of the iamge classification pipeline accross multiple cores.                                               
 ![pedestrian](./readme_data/pedestrian.png "pedestrian")
-- **Image alignment** : We aim to write a highly parallelized version of the inverse-compositional Lukas-Kanade algorithm, by optimizing the comparisons using SIMD insructions.
+- **Image alignment** : We aim to write a highly parallelized version of the inverse-compositional Lukas-Kanade algorithm, by optimizing the comparisons using SIMD instructions.                                
 ![lk1](./readme_data/lk1.png "lk1")
 ![lk2](./readme_data/lk2.png "lk2")
 ![lk3](./readme_data/lk3.png "lk3")
