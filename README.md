@@ -42,17 +42,26 @@ The 2 of the above functions are only a small set of examples of the functions w
 
 ### High-level Computer Vision pipelines ###
 *Need to add descriptions and illustrations here*
-- **Corner detection**
-- **Image classification**
-- **Object detection**
-- **Image alignment**
-- **3D reconstruction from motion**
-- **Image stitching**
-
+- **Feature extraction** : Often involves very parallelizable processes such as gradient calculation accross all pixels of the image.
+![Feature extraction](./readme_data/corners.png "Feature extraction")
+- **Image classification** : Apply parallelization in the space of machine learning to classify images. One approach to spped up learning using parallel computation would be to build the *dictionary* of visual words in parallel on the GPU.
+![classification](./readme_data/classification.png "classification")
+- **Object detection** : We could paralellize the process of object detection by the windowed application of the iamge classification pipeline accross multiple cores.                                               
+![pedestrian](./readme_data/pedestrian.png "pedestrian")
+- **Image alignment** : We aim to write a highly parallelized version of the inverse-compositional Lukas-Kanade algorithm, by optimizing the comparisons using SIMD insructions.
+![lk1](./readme_data/lk1.png "lk1")
+![lk2](./readme_data/lk2.png "lk2")
+![lk3](./readme_data/lk3.png "lk3")
+- **Image stitching** : Using the parallel versions of low-level functions, image stitching (used extensively in SLAM, or even on your phones to create panoramas!) can be made to run much faster.
+![panorama](./readme_data/panorama.png "panorama")
+- If we're still left with time : **3D reconstruction from motion** or **Stereo matching** :
+![3d](./readme_data/3d.png "3d")
 
 
 ## The Challenge ##
 
+WUT CHALLENGE? 
+![challenge](./readme_data/challenge.png "challenge")
 
 
 ## Resources ##
@@ -64,15 +73,20 @@ The 2 of the above functions are only a small set of examples of the functions w
 
 ## Goals and Deliverables ##
 ### Plan to Achieve ###
+- In our demo, our primary aim is to display live the speedups we achieved by appyling the principles of parallel algorithm design that we learnt in this course.
+- We aim to do this by juxtaposing live demos of the sequential and parallel versions of the Computer Vision pipelines we're building and plotting speedup graphs for a direct quantitative comparison.
 
 ### Hope to Achieve ###
-
+- In the case that we're not running behind on schedule, we've allocated April 23rd to April 30th to extend some of the CV pipelines to work with 3D point clouds from the Kinect 2.0 sensor.
+- Basically, extending our pipelines from 2D to 3D
 
 ## Platform Choice ##
 We have chosen to write our library in C++:
 - for the low-level system control it offers
 - to utilize compatible GPU and multi-core libraries and modules such as OpenMP, CUDA, SSE and AVX instructions
 - due to its high speed and lower overheads
+
+For our depth camera (required for the *Hope to achieve* goals), we chose the Kinect 2.0 from Microsoft due to its quality of  documentation and large open-source community support, in addition to the quality of senosr output.
 
 ## Schedule ##
 
