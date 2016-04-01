@@ -63,6 +63,9 @@ The 2 of the above functions are only a small set of examples of the functions w
 
 
 ## Goals and Deliverables ##
+### Plan to Achieve ###
+
+### Hope to Achieve ###
 
 
 ## Platform Choice ##
