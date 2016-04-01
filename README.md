@@ -34,7 +34,52 @@ information:
 ![Binary features](./readme_data/binary_features.png "Binary features")
 
 
+We plan to include support for the popular feature descriptors in use today. Like image convolution with filters, **feature descriptor
+computation and matching** can benefit greatly with parallelization due to independent and repeated computations over pixels.
+
+The 2 of the above functions are only a small set of examples of the functions we plan to optimize, using parallel algorithm design techniques.
+
+
+### High-level Computer Vision pipelines ###
+*Need to add descriptions and illustrations here*
+- **Corner detection**
+- **Image classification**
+- **Object detection**
+- **Image alignment**
+- **3D reconstruction from motion**
+- **Image stitching**
 
 
 
+## The Challenge ##
 
+
+
+## Resources ##
+- CMU's 16-385 : Undergrad level Computer Vision course
+- http://www.engr.colostate.edu/~hj/conferences/47.pdf
+- http://algo.yonsei.ac.kr/international_JNL/APCVsystem98Kim.pdf
+- http://grid.cs.gsu.edu/~tcpp/curriculum/sites/default/files/Teaching%20Parallel%20Programming%20Using%20Computer%20Vision%20and%20Image%20Processing%20Algorithms(paper).pdf
+
+
+## Goals and Deliverables ##
+### Plan to Achieve ###
+
+### Hope to Achieve ###
+
+
+## Platform Choice ##
+We have chosen to write our library in C++:
+- for the low-level system control it offers
+- to utilize compatible GPU and multi-core libraries and modules such as OpenMP, CUDA, SSE and AVX instructions
+- due to its high speed and lower overheads
+
+## Schedule ##
+
+| Week ending | Target                                                                                       |
+|-------------|----------------------------------------------------------------------------------------------|
+| April 9th   | Finish writing low-level functions with parallel-computing optimizations                     |
+| April 16th  | Finish writing sequential version of high-level CV pipelines                                 |
+| April 23rd  | Optimize and add-in parallel-computing support for high-level pipelines                      |
+| April 30th  | If running on schedule, then extend support for 3D point clouds                              |
+| May 7th     | Compile speedup and project reports and refactor code, and prepare for the the presentation! |
