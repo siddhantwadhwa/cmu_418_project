@@ -61,7 +61,7 @@ The 2 of the above functions are only a small set of examples of the functions w
 ## The Challenge ##
 
 WUT CHALLENGE? 
-![challenge](./readme_data/challenge.png "challenge")
+The most challenging aspect of this project should be optimizing otherwise-standard algorithms for SIMD and multicore execution while preserving insruction stream coherence and cache locality. In addition, setting flexible parameters for parallel work distribution, that best suit the user's hardware, could also require a lot a testing.
 
 
 ## Resources ##
