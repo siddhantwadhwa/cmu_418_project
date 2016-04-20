@@ -90,23 +90,32 @@ For prototyping, we are using MATLAB:
 
 For our depth camera (required for the *Hope to achieve* goals), we chose the Kinect from Microsoft due to its quality of  documentation and large open-source community support, in addition to the quality of sensor output. Plus, we can compare our resulting depth maps from stereo matching to the ASIC implementation onboard the Kinect for baseline quality comparisons.
 
-## Schedule ##
+## Schedule (Updated accroding to progress till checkpoint)##
 
-| By | Target                                                                                                | Assigned to |
-|-------------|----------------------------------------------------------------------------------------------|             |
-| April 21st  | Finish writing sequential version of high-level CV pipelines                                 | Both |
-| April 24th  | Optimize and add-in parallel-computing support for high-level pipelines                      |
-| April 28th  | If running on schedule, then extend support for 3D point clouds                              |
-| May 1st     | Compile speedup and project reports and refactor code, and prepare for the the presentation! |
-| May 5th     | Compile speedup and project reports and refactor code, and prepare for the the presentation! |
-| May 8th     | Compile speedup and project reports and refactor code, and prepare for the the presentation! |
+| Week ending | Target                                                                                                                              | Assigned to             |
+|-------------|-------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
+| April 19th  | Finished writing MATLAB pipeline prototypes to check for correctness                                                                | Both (done)             |
+| April 21st  | Finish writing primitives with parallel-computing optimizations in C++                                                              | Druhin                  |
+|             | Translate stereo matching to C++ and test on Kinect                                                                                 | Sid                     |
+| April 24th  | Prepare for Exam 2                                                                                                                  | Both                    |
+| April 28th  | Translate other MATLAB pipelines to C++                                                                                             | Both (pair programming) |
+| May 1st     | Optimize and parallelize C++ pipelines                                                                                              | Both (pair programming) |
+| May 5th     | If running on schedule, implement mean shift clustering                                                                             | Druhin                  |
+|             | If running on schedule, implement fusion of  stereo-pair depth maps with Kinect ASIC-results to obtain higher resolution depth maps | Sid                     |
+| May 8th     | Compile speedup and project reports and refactor code, and prepare for the the presentation!                                        | Both                    |
 
 ## Preliminary Results ##
+(MATLAB prototypes are offline due to overlap with Computer Vision class work)
 
-- *Image Classification Pipeline:* Our prototype achieves around 60% accuracy for labeling images out of 8 categories with our test-training set. 
-- *Stereo Matching Pipeline:*
-    ![Epipolar lines](./readme_data/1.1i.jpg "Epipolar lines")
-    ![Epipolar point correspondences](./readme_data/1.2i.jpg "Epipolar point correspondences")
-    ![Image rectification](./readme_data/2.1b.jpg "Image Rectification")
-    ![Depth and disparity maps](./readme_data/2.3a.jpg "Depth and disparity maps")
-    
+- **Image Classification Pipeline:** Our prototype achieves around 60% accuracy for labeling images out of 8 categories with our test-training set. 
+- **Stereo Matching Pipeline:**
+    - Finding Epipolar lines in stereo pair
+![Epipolar lines](./readme_data/1.1i.jpg "Epipolar lines")
+    - Rectifying images
+![Image rectification](./readme_data/2.1b.jpg "Image Rectification")
+    - Finding correspondances along epipolar lines
+![Epipolar point correspondences](./readme_data/1.2i.jpg "Epipolar point correspondences")
+    - Computing Depth and Disparity maps
+![Depth and disparity maps](./readme_data/2.3a.jpg "Depth and disparity maps")
+    - Image Stitching :
+![Panorama](./readme_data/proto_panorama.jpg "Panorama")
