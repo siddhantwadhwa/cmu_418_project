@@ -118,4 +118,5 @@ For our depth camera (required for the *Hope to achieve* goals), we chose the Ki
     - Computing Depth and Disparity maps
 ![Depth and disparity maps](./readme_data/2.3a.jpg "Depth and disparity maps")
     - Image Stitching :
-![Panorama](./readme_data/proto_panorama.jpg "Panorama")
+![Panorama1](./readme_data/proto_pano_1.jpg "Panorama1")
+![Panorama2](./readme_data/proto_pano_2.jpg "Panorama2")
