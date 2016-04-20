@@ -109,7 +109,7 @@ For our depth camera (required for the *Hope to achieve* goals), we chose the Ki
 
 - **Image Classification Pipeline:** Our prototype achieves around 60% accuracy for labeling images out of 8 categories with our test-training set. 
 - **Stereo Matching Pipeline:**
-    - Finding Epipolar lines in stereo pair
+    - Finding Epipolar lines in stereo pair                                 
 ![Epipolar lines](./readme_data/1.1i.jpg "Epipolar lines")
     - Rectifying images
 ![Image rectification](./readme_data/2.1b.jpg "Image Rectification")
