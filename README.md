@@ -117,6 +117,6 @@ For our depth camera (required for the *Hope to achieve* goals), we chose the Ki
 ![Epipolar point correspondences](./readme_data/1.2i.jpg "Epipolar point correspondences")
     - Computing Depth and Disparity maps
 ![Depth and disparity maps](./readme_data/2.3a.jpg "Depth and disparity maps")
-    - Image Stitching :
+- Image Stitching :
 ![Panorama1](./readme_data/proto_pano_1.jpg "Panorama1")
 ![Panorama2](./readme_data/proto_pano_2.jpg "Panorama2")
