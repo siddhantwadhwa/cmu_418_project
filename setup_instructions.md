@@ -22,3 +22,7 @@ export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$DYLD_LIBRARY_PATH
 - Uncheck System Preferences > Energy Saver > Automatic Graphic Switch
 - Drag the Computer sleep bar to Never in System Preferences > Energy Saver
 
+
+### Setting up opencv 3 for mac ###
+
+Follow the step-by-step instructions at http://tilomitra.com/opencv-on-mac-osx/
