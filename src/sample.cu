@@ -1,3 +1,12 @@
+//
+// Sample Program to test cmake build system
+// settings for CUDA
+//
+// Author : Siddhant Wadhwa
+// Creation Date : Thursday, April 21st, 2016
+// Modification history : <none>
+//
+
 #include <iostream>
 #include <stdio.h>
 
