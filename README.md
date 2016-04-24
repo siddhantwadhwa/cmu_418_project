@@ -51,7 +51,7 @@ The 2 of the above functions are only a small set of examples of the functions w
 ![classification](./readme_data/classification.png "classification")
 - **Image stitching** : Using the parallel versions of low-level functions, image stitching (used extensively in SLAM, or even on your phones to create panoramas!) can be made to run much faster.
 ![panorama](./readme_data/panorama.png "panorama")
-- **HIGHLIGHT : Real time Stereo matching on the GPU using CUDA** : Implementation of real-time dense stereo matching that leverages local methods (that exploit SIMD and spatial locality inherent in image data), parallelized-dynamic programming over all epipolar lines and post-processing.
+- **HIGHLIGHT : Real time Stereo matching on the GPU using CUDA** : Implementation of real-time dense stereo matching that leverages local methods (that exploit SIMD and spatial locality inherent in image data), parallelized-dynamic programming over all epipolar lines and post-processing. More info at http://cadcamcae.eafit.edu.co/documents/09_09_2009_Congote_etal_TV_stereo_depthmap_CUDA.pdf
 ![3d](./readme_data/3d.png "3d")
 - If left with time, we plan to try to **improve the resolution and quality of kinect depth maps** by fusing results from our stereo matching pipeline with ASIC-implemented depth estimation on the Kinect. More details on (http://file.scirp.org/pdf/OJAppS_2013012215594588.pdf)
 
