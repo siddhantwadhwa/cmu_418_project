@@ -28,6 +28,7 @@ add_executable( sample_opencv src/sample_opencv.cpp )
 target_link_libraries( sample_opencv ${OpenCV_LIBS} )
 add_executable( baseline_convolve src/primitives/baseline_convolve.cpp )
 target_link_libraries( baseline_convolve ${OpenCV_LIBS} )
+#set_property(TARGET baseline_convolve PROPERTY CXX_STANDARD 11)
 
 # Specify executable file to be created for the sample
 # PCL source code and link PCL libraries to it

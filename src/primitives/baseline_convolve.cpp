@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <opencv2/opencv.hpp>
+#include <ctime>
 
 int main(int argc, char** argv )
 {
@@ -14,12 +15,19 @@ int main(int argc, char** argv )
 
     // Reading image file
     cv::Mat gray_image = cv::imread(argv[1], 0 );
-    cv::Mat image;
-    gray_image.convertTo(image,CV_32F);  
     
     // Reading kernel file
     cv::Mat kernel = cv::Mat::ones(10, 10, CV_32F);;
 
+    // Starting timer
+    std::clock_t start;
+    double duration;
+    start = std::clock();
+
+    // Coverting to matri of floats
+    cv::Mat image;
+    gray_image.convertTo(image,CV_32F);  
+    
     // Assuming square matrix where numRows is odd
     int padding = (int)(kernel.rows/2);
     
@@ -71,6 +79,11 @@ int main(int argc, char** argv )
     cv::Mat op_image;
     convolved.convertTo(op_image,CV_8U);
 
+    // Ending timer
+    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    std::cout<<"CPU time taken: "<< duration <<" seconds\n";
+    
+    // Displaying results
     cv::namedWindow( "Source Image", cv::WINDOW_AUTOSIZE );
     cv::namedWindow( "Convolved Image", cv::WINDOW_AUTOSIZE );
     cv::imshow("Source Image", gray_image);
