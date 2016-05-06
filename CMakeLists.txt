@@ -34,6 +34,8 @@ target_link_libraries( baseline_convolve ${OpenCV_LIBS} )
 add_executable( opencv_convolve src/primitives/baseline_convolve.cpp )
 target_link_libraries( opencv_convolve ${OpenCV_LIBS} )
 target_link_libraries( cuda_naive_convolve ${OpenCV_LIBS} )
+add_executable( create_filter_bank src/image_classification/create_filter_bank.cpp )
+target_link_libraries( create_filter_bank ${OpenCV_LIBS} )
 #set_property(TARGET baseline_convolve PROPERTY CXX_STANDARD 11)
 
 # Specify executable file to be created for the sample
