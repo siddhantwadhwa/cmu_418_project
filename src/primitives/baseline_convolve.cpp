@@ -17,14 +17,14 @@ int main(int argc, char** argv )
     cv::Mat gray_image = cv::imread(argv[1], 0 );
     
     // Reading kernel file
-    cv::Mat kernel = cv::Mat::ones(10, 10, CV_32F);;
+    cv::Mat kernel = cv::Mat::ones(31, 31, CV_32F);;
 
     // Starting timer
     std::clock_t start;
     double duration;
     start = std::clock();
 
-    // Coverting to matri of floats
+    // Coverting to matrix of floats
     cv::Mat image;
     gray_image.convertTo(image,CV_32F);  
     
@@ -36,7 +36,7 @@ int main(int argc, char** argv )
     cv::copyMakeBorder( image, padded_image, padding, padding, padding, padding, cv::BORDER_REPLICATE);
     
     // Initializing output cv Mat
-    cv::Mat convolved = cv::Mat::ones(image.rows, image.cols, CV_32F); 
+    cv::Mat convolved = cv::Mat::zeros(image.rows, image.cols, CV_32F); 
 
     // calculate sum of kernel values
     float kernel_sum;
@@ -54,6 +54,9 @@ int main(int argc, char** argv )
     int start_col = padding;
     int end_col = padded_image.cols-padding;
 
+    float* kernel_data = (float *)kernel.data;
+    float* convolved_data = (float *)convolved.data;
+    float* padded_image_data = (float *)padded_image.data;
     // Naive looping over all pixels in the image
     for(int row=start_row; row<end_row; row++)
     {
@@ -71,6 +74,10 @@ int main(int argc, char** argv )
                     //    "]["<<kernel_start_col+k_col<<"]\n";
                     convolved.at<float>(row-start_row,col-start_col) += kernel.at<float>(k_row,k_col) * 
                         padded_image.at<float>(kernel_start_row+k_row,kernel_start_col+k_col) / kernel_sum;
+                    //convolved.data[(row-start_row)*convolved.cols+col-start_col] += (
+                    //                kernel.data[k_row*kernel.cols + k_col] * 
+                    //                padded.image_data[(kernel_start_row+k_row) * padded_image.cols + 
+                    //                kernel_start_col+k_col] / kernel_sum);
                 }
             }
         }

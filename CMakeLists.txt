@@ -21,6 +21,9 @@ find_package( OpenCV REQUIRED )
 cuda_add_executable(
     sample_cuda
     src/sample_cuda.cu)
+cuda_add_executable(
+    cuda_naive_convolve
+    src/primitives/cuda_naive_convolve.cu)
 
 # Specify executable file to be created for the sample
 # OpenCV source code and link opencv libraries to it
@@ -30,6 +33,7 @@ add_executable( baseline_convolve src/primitives/baseline_convolve.cpp )
 target_link_libraries( baseline_convolve ${OpenCV_LIBS} )
 add_executable( opencv_convolve src/primitives/baseline_convolve.cpp )
 target_link_libraries( opencv_convolve ${OpenCV_LIBS} )
+target_link_libraries( cuda_naive_convolve ${OpenCV_LIBS} )
 #set_property(TARGET baseline_convolve PROPERTY CXX_STANDARD 11)
 
 # Specify executable file to be created for the sample

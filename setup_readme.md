@@ -32,12 +32,14 @@ Follow the step-by-step instructions at http://tilomitra.com/opencv-on-mac-osx/
 
 Follow instuctions on : http://pointclouds.org/downloads/macosx.html. First install the dependencies (boost, eigen, FLANN, VTK, Qhull and OpenNI), then the PCL library.
 
-### Build instructions ###
-- Navigate to the project directory
-- Now create a directory named 'build', and chenge directories into it. i.e. `mkdir build; cd build;`/
-- Now execute the command `cmake ..`
-- This should populate the build directory with a Makefile
-- Now run `make`
+In the file eigen.h (default location : `/usr/local/include/pcl-1.6/pcl/common/`) replace all occurrences of :
+- `Eigen::internal::sqrt` with `sqrt`
+- `Eigen::sin/cos` with `sin/cos`
+
+
+
+
+
 
 
 
