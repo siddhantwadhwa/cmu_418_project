@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <opencv2/opencv.hpp>
-#include <ctime>
-
+#include "baseline_convolve.h"
 
 cv::Mat baseline_convolve(cv::Mat gray_image, cv::Mat kernel)
 {
