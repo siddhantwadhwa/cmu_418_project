@@ -103,7 +103,6 @@ filter_bank create_filter_bank()
     }
     
     return fb;
-
 }
 
 int main()
