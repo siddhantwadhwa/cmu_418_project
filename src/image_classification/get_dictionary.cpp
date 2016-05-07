@@ -51,10 +51,17 @@ cv::Mat get_dictionary(std::vector<std::string> imgPaths, int alpha, int K)
     cv::Mat alpha_resp_mat = cv::CreateMat(alpha_responses.size(), alpha_responses[0].size(), CV_32F);
     for (size_t i = 0; i <alpha_responses.size(); i++) {
         for (size_t j = 0; j < alpha_responses[i].size(); j++) {
-            alpha_responses.at<double>(i, j) = alpha_resp_mat[i][j];
+            alpha_resp_mat.at<double>(i, j) = alpha_responses[i][j];
         }
     }
     
+    cv::Mat labels;
+    cv::Mat centers(K, alpha_resp_mat.cols , CV_32F);
+    
     // TODO return the dict formed from this:
-    //double kmeans(InputArray data, int K, InputOutputArray bestLabels, TermCriteria criteria, int attempts, int flags, OutputArray centers=noArray() )    
+    double kmeans(alpha_resp_mat, K, labels,
+                  cv::TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0),
+                  5, cv::KMEANS_PP_CENTERS, centers  );
+
+    return centers;
 }
