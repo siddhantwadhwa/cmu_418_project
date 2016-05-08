@@ -12,10 +12,10 @@ int find_closest_word(cv::Mat dict, cv::Mat pixel_response)
         float distance = 0;
         for(int col=0; col<dict.cols; col++)
         {
-            float tmp = (pixel_response.at<float>(0,col)*dict.at<float>(row,col));
-            distance += sqrt(tmp*tmp);
+            float tmp = (pixel_response.at<float>(0,col)-dict.at<float>(row,col));
+            distance += (tmp*tmp);
         }
-        distances.at<float>(row,0) = distance;
+        distances.at<float>(row,0) = std::sqrt(distance);
     }
 
     // Find index of row with minimum distance
