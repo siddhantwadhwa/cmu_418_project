@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib>
 #include <opencv2/opencv.hpp>
-#include <ctime>
-#include <iostream>
-#include <fstream>
-#include <string>
 
 using namespace std;
 

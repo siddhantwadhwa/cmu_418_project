@@ -1,14 +1,9 @@
-#include "create_filter_nack.h"
+#include "create_filter_bank.h"
 
 #define UPDIV(x,y) ((x+y-1)/y)
-#define NUM_SIZES 5
 //#define NUM_SIZES 1
-
-struct filter_bank {
-    int count;
-    std::vector<cv::Mat> filters;
-};
-
+#define NUM_SIZES 1
+/*
 cv::Mat get_gaussian_kernel(int size, float sigma)
 {
     cv::Mat kernel = cv::Mat::zeros(size, size, CV_32F);
@@ -18,13 +13,13 @@ cv::Mat get_gaussian_kernel(int size, float sigma)
     float sum = 0.0;
 
     int half = size/2;
-    printf("half = %d", half); 
+    //printf("half = %d", half); 
     // generate 5x5 kernel
     for (int x = -half; x <= half; x++)
     {
         for(int y = -half; y <= half; y++)
         {   
-            std::cout<<x+half<<","<<y+half<<std::endl;  
+            //std::cout<<x+half<<","<<y+half<<std::endl;  
             r = sqrt(x*x + y*y);
             kernel.at<float>(x+half,y+half) = (exp(-(r*r)/s))/((float)M_PI * s);
             sum += kernel.at<float>(x+half,y+half);
@@ -72,9 +67,11 @@ filter_bank create_filter_bank()
 {
     // Declare filter_bank object
     filter_bank fb;
+    fb.count = 0;
+    
     
     // Create array containing sizes for kernels
-    int sizes[] = { 1, 2, 4, 8, (int)(std::sqrt(2)*8) };
+    int sizes[] = { 11};// (int)(std::sqrt(2)*8) };
     //int sizes[] = { 11 };
     
 
@@ -114,7 +111,26 @@ int main()
         std::cout<<"Kernel "<<i<<std::endl<<value<<std::endl;
     }
              
-    
-
     return 0;
 }
+*/
+
+filter_bank create_filter_bank(std::string demoFile)
+{   
+    filter_bank fb;
+    fb.count = 20;
+
+    cv::FileStorage fsDemo( demoFile, cv::FileStorage::READ);
+    
+    for(int i=1; i<=20; i++)
+    {
+        cv::Mat tmp;
+        std::string name = "mat" + std::to_string(i);
+        fsDemo[name] >> tmp;
+        fb.filters.push_back(tmp);
+    }
+
+    fsDemo.release();
+    return fb;
+}
+

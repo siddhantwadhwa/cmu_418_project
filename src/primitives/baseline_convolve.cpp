@@ -64,7 +64,7 @@ cv::Mat baseline_convolve(cv::Mat gray_image, cv::Mat kernel)
     return convolved;
 } 
 
-
+/*
 int main(int argc, char** argv )
 {
     // Keep track of total size of working set
@@ -164,3 +164,4 @@ int main(int argc, char** argv )
     return 0;
 
 }
+*/

@@ -1,9 +1,9 @@
 #include "get_visual_words.h"
 
 // Returns row index of the visual word with the least euclidean distance
-int find_closest_word(cv::Mat dict, cv::Mat pixel_filter_response)
+int find_closest_word(cv::Mat dict, cv::Mat pixel_response)
 {
-    cv::Mat distances = cv::Mat::zeros(dict.rows(),1,CV_32F);
+    cv::Mat distances = cv::Mat::zeros(dict.rows,1,CV_32F);
     
     // Compute distances to each row of the dict
     for(int x=0; x<dict.rows; x++)
@@ -22,10 +22,10 @@ int find_closest_word(cv::Mat dict, cv::Mat pixel_filter_response)
     float min_dist = distances.at<float>(0,0);
     for(int x=0; x<dict.rows; x++)
     {
-        if(distance.at<float>(x,0)<min_dist)
+        if(distances.at<float>(x,0)<min_dist)
         {
             min_idx = x;
-            min_dist = distance.at<float>(x,0);
+            min_dist = distances.at<float>(x,0);
         }
         
     }
@@ -36,17 +36,17 @@ int find_closest_word(cv::Mat dict, cv::Mat pixel_filter_response)
 cv::Mat get_visual_words(cv::Mat img, cv::Mat dict, filter_bank fb)
 {
     // Get filter responses
-    std::vector<cv::Mat> filter_responses = extract_filter_responses(img, fb);
+    std::vector<cv::Mat> filter_responses = extractFilterResponses(img, fb);
 
     // Reshape filter_responses, so that each pixel gets a row of 3n dimensions
-    cv::Mat row_wise_filter_response = zeros(img.rows*img.cols, filter_responses.size(), CV_32F);
+    cv::Mat row_wise_filter_response = cv::Mat::zeros(img.rows*img.cols, filter_responses.size(), CV_32F);
     for(int i=0; i<filter_responses.size(); i++)
     {
         for(int x=0; x<img.cols; x++)
         {
             for(int y=0; y<img.rows; y++)
             {
-                row_wise_filter_response.at<float>(y*img.cols+x,i) = filter_responses.size.at<float>(x,y);
+                row_wise_filter_response.at<float>(i,(y*img.cols+x)) = filter_responses[i].at<float>(x,y);
             }
         }
     }
@@ -54,7 +54,7 @@ cv::Mat get_visual_words(cv::Mat img, cv::Mat dict, filter_bank fb)
     // Build wordmap by associating each pixel to the index of the 
     // closest word in the dictionary (cost : euclidean distance)
     int num_pixels = img.rows*img.cols;
-    cv::Mat wordmap = cv::Mat::zeros(img.rows, img.cols, CV_8U)
+    cv::Mat wordmap = cv::Mat::zeros(img.rows, img.cols, CV_8S);
     for(int x=0; x<img.cols; x++)
     {
         for(int y=0; y<img.rows; y++)
