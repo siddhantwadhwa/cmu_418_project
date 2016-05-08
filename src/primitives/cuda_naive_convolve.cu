@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <opencv2/opencv.hpp>
-#include <ctime>
+#include "cuda_naive_convolve.h"
 
 
 // Cuda scheduling parameters
