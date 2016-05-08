@@ -69,6 +69,6 @@ cv::Mat get_dictionary(std::vector<std::string> imgPaths, int alpha, int K, std:
                   3, cv::KMEANS_PP_CENTERS, centers  );
     
     std::cout<<"Size of dict = "<<centers.rows<<", "<<centers.cols<<std::endl;
-    std::cout<<"Dict : \n"<<centers;
+    //std::cout<<"Dict : \n"<<centers;
     return centers;
 }

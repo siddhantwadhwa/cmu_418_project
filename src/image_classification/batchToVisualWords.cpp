@@ -38,17 +38,25 @@ int main(int argc, char** argv){
 
     string wordMapPath(argv[2]);
 
-    cv::Mat dictionary = get_dictionary(imagePaths, 50, 100, argv[3]);
-/* 
-    filter_bank filterBank = create_filter_bank();
-
+    cv::Mat dictionary = get_dictionary(imagePaths, 50, 100, argv[3]); 
+    filter_bank filterBank = create_filter_bank(argv[3]);
     
     for (int i = 0; i < numLines; i++){
-        cv::Mat image = cv::imread(imagePaths[i]);
+        std::cout<<"Writing wordmap : "<<i<<" "<<imagePaths[i]<<"_wm\n"; 
+        
+        //std::cout<<"Reading image: "<<imagePaths[i]<<"\n"; 
+        cv::Mat img = cv::imread(imagePaths[i]);
+        cv::Mat image;
+        img.convertTo(image, CV_32F);
+        //std::cout<<"about to call get_visual_words\n"; 
         cv::Mat wordMap = get_visual_words(image, dictionary, filterBank);
+        
+        //std::cout<<"Storepath = "<<std::string(imagePaths[i])<<"_wm\n"; 
         string storePath = std::string(imagePaths[i]) + "_wm";
+        //std::cout<<"writing to file\n"; 
         cv::imwrite(storePath, wordMap);
+        //std::cout<<"end of loop\n"; 
+
     }
-*/  
 
 }
