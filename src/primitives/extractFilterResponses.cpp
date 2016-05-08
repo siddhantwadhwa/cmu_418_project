@@ -36,7 +36,7 @@ std::vector<cv::Mat> extractFilterResponses(cv:Mat I, filter_bank filterBank)
         }
     }
 
-
+    
 
 
 }

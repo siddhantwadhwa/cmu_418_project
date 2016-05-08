@@ -1,9 +1,8 @@
-#include <stdio.h>
-#include <opencv2/opencv.hpp>
+#include "create_filter_nack.h"
 
 #define UPDIV(x,y) ((x+y-1)/y)
-//#define NUM_SIZES 5
-#define NUM_SIZES 1
+#define NUM_SIZES 5
+//#define NUM_SIZES 1
 
 struct filter_bank {
     int count;
@@ -60,9 +59,9 @@ cv::Mat get_LoG_kernel(int size, float sigma)
     }
  
     // normalize the Kernel
-    //for(int i = 0; i < size; ++i)
-    //    for(int j = 0; j < size; ++j)
-    //        kernel.at<float>(i,j) /= sum;
+    for(int i = 0; i < size; ++i)
+        for(int j = 0; j < size; ++j)
+            kernel.at<float>(i,j) /= sum;
 
     return kernel;
  
@@ -75,8 +74,8 @@ filter_bank create_filter_bank()
     filter_bank fb;
     
     // Create array containing sizes for kernels
-    //int sizes[] = { 1, 2, 4, 8, (int)(std::sqrt(2)*8) };
-    int sizes[] = { 11 };
+    int sizes[] = { 1, 2, 4, 8, (int)(std::sqrt(2)*8) };
+    //int sizes[] = { 11 };
     
 
     // Append gaussian kernel in all sizes
