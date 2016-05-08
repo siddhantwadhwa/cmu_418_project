@@ -32,7 +32,7 @@ cv::Mat get_dictionary(std::vector<std::string> imgPaths, int alpha, int K, std:
         //cv::waitKey(0);
         
         // Apply filterbank to the image
-        std::vector<cv::Mat> filter_responses = extractFilterResponses(img, fb);
+        std::vector<cv::Mat> filter_responses = extractFilterResponses(img, fb,0);
         
         // Get random points to sample
         std::vector<cv::Point> random_points = get_random_points(alpha, img.rows, img.cols);

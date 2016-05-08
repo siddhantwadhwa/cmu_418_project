@@ -170,7 +170,7 @@ cv::Mat cuda_convolve(cv::Mat cpu_image, cv::Mat cpu_kernel)
     
     return op_image;
 }
-
+/*
 int main(int argc, char** argv )
 {
     if( argc != 2)
@@ -203,7 +203,7 @@ int main(int argc, char** argv )
     return 0;
 
 }
-
+*/
 
 
 

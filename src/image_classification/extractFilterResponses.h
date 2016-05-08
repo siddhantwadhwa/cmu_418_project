@@ -4,5 +4,5 @@
 #include <ctime>
 #include "../primitives/baseline_convolve.h"
 
-std::vector<cv::Mat> extractFilterResponses(cv::Mat I, filter_bank filterBank);
+std::vector<cv::Mat> extractFilterResponses(cv::Mat I, filter_bank filterBank, int version);
 

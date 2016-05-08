@@ -3,7 +3,7 @@
 // Returns row index of the visual word with the least euclidean distance
 int find_closest_word(cv::Mat dict, cv::Mat pixel_response)
 {
-    std::cout<<"Entered find_closest_word\n";
+    //std::cout<<"Entered find_closest_word\n";
     cv::Mat distances = cv::Mat::zeros(dict.rows,1,CV_32F);
     
     // Compute distances to each row of the dict
@@ -19,7 +19,7 @@ int find_closest_word(cv::Mat dict, cv::Mat pixel_response)
     }
 
     // Find index of row with minimum distance
-    float min_idx = 0;
+    int min_idx = 0;
     float min_dist = distances.at<float>(0,0);
     for(int x=0; x<dict.rows; x++)
     {
@@ -30,7 +30,7 @@ int find_closest_word(cv::Mat dict, cv::Mat pixel_response)
         }
         
     }
-    std::cout<<"Exited find_closest_word\n";
+    //std::cout<<"Exited find_closest_word\n";
 
     return min_idx;
 }
@@ -39,8 +39,8 @@ cv::Mat get_visual_words(cv::Mat img, cv::Mat dict, filter_bank fb)
 {
     std::cout<<"Entered get_visual_words\n";
     // Get filter responses
-    std::vector<cv::Mat> filter_responses = extractFilterResponses(img, fb);
-
+    std::vector<cv::Mat> filter_responses = extractFilterResponses(img, fb,0);
+    std::cout<<"Done extract filter stuff \n";
     // Reshape filter_responses, so that each pixel gets a row of 3n dimensions
     cv::Mat row_wise_filter_response = cv::Mat::zeros(img.rows*img.cols, filter_responses.size(), CV_32F);
     for(int row=0; row<img.rows; row++)
@@ -55,6 +55,7 @@ cv::Mat get_visual_words(cv::Mat img, cv::Mat dict, filter_bank fb)
             }
         }
     }
+    std::cout<<"1: Looped\n";
 
     // Build wordmap by associating each pixel to the index of the 
     // closest word in the dictionary (cost : euclidean distance)
@@ -65,10 +66,13 @@ cv::Mat get_visual_words(cv::Mat img, cv::Mat dict, filter_bank fb)
         for(int col=0; col<img.cols; col++)
         {
             cv::Mat pixel_response = row_wise_filter_response.row(row*img.cols+col);
+            std::cout<<"pixelresponse size = "<<pixel_response.rows<<
+                ","<<pixel_response.cols<<std::endl;
             wordmap.at<int>(row,col) = find_closest_word(dict, pixel_response);
         }
     }
 
     std::cout<<"Exiting get_visual_words\n";
+    std::cout<<"Wordmap = "<<wordmap<<std::endl;
     return wordmap;
 }
