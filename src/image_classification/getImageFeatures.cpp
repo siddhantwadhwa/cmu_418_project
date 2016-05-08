@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib>
-#include <opencv2/opencv.hpp>
+#include "getImageFeatures.h"
 
 using namespace std;
 
