@@ -8,7 +8,7 @@ int main(int argc, char** argv )
 {
     // Keep track of total size of working set
 
-    if( argc != 2)
+    if( argc != 3)
     {
         printf("usage: baseline_multiply <matrixA_path> <matrixB_path>\n");
         return -1;
