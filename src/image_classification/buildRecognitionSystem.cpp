@@ -45,8 +45,8 @@ int main(int argc, char** argv){
         std::string wMapPath = imagePaths[i] + "_wm";
         cv::FileStorage wMapFile(wMapPath, cv::FileStorage::READ);
         cv::Mat wMap;
-        fsDemo["map"] >> wMap;
-        fsDemo.release();
+        wMapFile["map"] >> wMap;
+        wMapFile.release();
         trainFeatures[i] = getImageFeatures(wMap, K);
     }
 
