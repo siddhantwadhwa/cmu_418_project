@@ -2,7 +2,7 @@
 
 using namespace std;
 
-vector<int> getImageFeatures(cv::Mat wordMap, int dictionarySize){
+vector<float> getImageFeatures(cv::Mat wordMap, int dictionarySize){
 
     int rows = wordMap.rows;
     int cols = wordMap.cols;
@@ -22,10 +22,12 @@ vector<int> getImageFeatures(cv::Mat wordMap, int dictionarySize){
         }
     }
 
+    vector<float> finalHistogram(dictionarySize);
+
     for (int i = 0; i < dictionarySize; i++){
-        histogram[i] = histogram[i]/numPixels;
+        finalHistogram[i] = (float)histogram[i]/(float)numPixels;
     }
 
-    return histogram;
+    return finalHistogram;
 
 }

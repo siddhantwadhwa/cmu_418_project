@@ -5,6 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "getImageFeatures.h"
+
 
 
 int main(int argc, char** argv){
@@ -54,9 +56,9 @@ int main(int argc, char** argv){
         cv::Mat wMap;
         wMapFile["map"] >> wMap;
         wMapFile.release();
-        std::vector<int> h = getImageFeatures(wMap, K);
-        /* assumes getImageDistance takes in a histogram (vector of ints) and 
-         * trainFeatures (cv::Mat of ints)
+        std::vector<float> h = getImageFeatures(wMap, K);
+        /* assumes getImageDistance takes in a histogram (vector of floats) and 
+         * trainFeatures (cv::Mat of floats)
          */
         std::vector<float> distances = getImageDistance(h, trainFeatures);
         std::vector<float>::iterator best = std::min_element(std::begin(distances), std::end(distances));

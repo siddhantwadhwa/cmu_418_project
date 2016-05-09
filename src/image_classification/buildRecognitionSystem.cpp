@@ -39,7 +39,7 @@ int main(int argc, char** argv){
 
     int K = 100;
 
-    std::vector<std::vector<int>> trainFeatures(numLines);
+    std::vector<std::vector<float>> trainFeatures(numLines);
 
     for (int i = 0; i < numLines; i++){
         std::string wMapPath = imagePaths[i] + "_wm";
@@ -50,11 +50,11 @@ int main(int argc, char** argv){
         trainFeatures[i] = getImageFeatures(wMap, K);
     }
 
-    cv::Mat tFeatures = cv::Mat::zeros(numLines, K, CV_32S);
+    cv::Mat tFeatures = cv::Mat::zeros(numLines, K, CV_32F);
     for (int row = 0; row < numLines; row++){
-        std::vector<int> rowVec = trainFeatures[row];
+        std::vector<float> rowVec = trainFeatures[row];
         for (int col = 0; col < K; col++){
-            tFeatures.at<int>(row, col) = rowVec[col];
+            tFeatures.at<float>(row, col) = rowVec[col];
         }
     }
 
