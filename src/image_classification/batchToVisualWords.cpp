@@ -8,17 +8,23 @@
 #include "create_filter_bank.h"
 #include "get_dictionary.h"
 #include "get_visual_words.h"
+#include "cuda_get_visual_words.h"
 
 
 using namespace std;
 
 int main(int argc, char** argv){
 
-    if( argc != 4)
+    if( argc != 4 && argc != 5 )
     {
-        printf("usage: batchToVisualWords <imagenames_list_path> <classification_data_fir_path> <path_to_filterbank_yaml_file>\n");
+        printf("usage: batchToVisualWords <imagenames_list_path> <classification_data_fir_path> <path_to_filterbank_yaml_file> <path_to_read_dict_from>\n");
         return -1;
     }
+    std::string dict_path = "";
+    
+    if(argc==5)
+        dict_path = argv[4];
+
 
     std::vector<string> imagePaths;
     std::string line;
@@ -38,23 +44,40 @@ int main(int argc, char** argv){
 
     string wordMapPath(argv[2]);
 
-    cv::Mat dictionary = get_dictionary(imagePaths, 50, 100, argv[3]); 
+    cv::Mat dictionary;
+    if(dict_path=="")
+    {
+        dictionary = get_dictionary(imagePaths, 50, 100, argv[3]);
+        cv::FileStorage fs("dict.yml", cv::FileStorage::WRITE );
+        fs << "dict" << dictionary;
+        fs.release();
+        std::cout<<"Written dict to file\n";
+    }   
+    else
+    {
+        cv::FileStorage fs(dict_path , cv::FileStorage::READ);
+        std::cout<<"Reading dict from file\n";
+        fs["dict"] >> dictionary;
+        std::cout<<"Done with reading the dictionary from file, with size ("<<dictionary.rows<<","<<dictionary.cols<<") and type "<<dictionary.type()<<"\n";
+        fs.release();
+    }
+
     filter_bank filterBank = create_filter_bank(argv[3]);
     
     for (int i = 0; i < numLines; i++){
-        std::cout<<"Writing wordmap : "<<i<<" "<<imagePaths[i]<<"_wm\n"; 
+        std::string wm_name = imagePaths[i].substr(0,imagePaths[i].length()-4);
+        wm_name = wm_name + "_wm.yml";
+
+        std::cout<<"Writing wordmap : "<<i<<" "<<wm_name<<std::endl; 
         
-        //std::cout<<"Reading image: "<<imagePaths[i]<<"\n"; 
         cv::Mat img = cv::imread(imagePaths[i]);
         cv::Mat image;
         img.convertTo(image, CV_32F);
-        //std::cout<<"about to call get_visual_words\n"; 
-        cv::Mat wordMap = get_visual_words(image, dictionary, filterBank);
+        cv::Mat wordMap = cuda_get_visual_words(image, dictionary, filterBank);
         
-        //std::cout<<"Storepath = "<<std::string(imagePaths[i])<<"_wm\n"; 
-        string storePath = std::string(imagePaths[i]) + "_wm";
-        //std::cout<<"writing to file\n"; 
-        cv::imwrite(storePath, wordMap);
+        cv::FileStorage fs(wm_name, cv::FileStorage::WRITE );
+        fs << "wmap" << wordMap;
+        fs.release();
         //std::cout<<"end of loop\n"; 
 
     }

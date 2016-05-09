@@ -166,9 +166,9 @@ cv::Mat cuda_convolve(cv::Mat cpu_image, cv::Mat cpu_kernel)
     cv::Mat op_image;
 
     // Cast to CV_8U for display
-    result.convertTo(op_image,CV_8U);
+    //result.convertTo(op_image,CV_8U);
     
-    return op_image;
+    return result;
 }
 /*
 int main(int argc, char** argv )
