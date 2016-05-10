@@ -9,7 +9,8 @@ Final Project for 15-418 (Parallel Computer Architecture and Computing) at Carne
 - Siddhant Wadhwa (swadhwa@andrew.cmu.edu)
 - Druhin Sagar Goel (dsgoel@andrew.cmu.edu)
 
-
+#Please refer to the final project report pdf for the time being#
+<!---
 ## Summary ##
 We're implementing a GPU based Computer Vision API that implements common CV primitives that benefit greatly in terms of performance on the GPU. In addtion, we shall be using these primitives to write commonly used Computer Vision pipelines that can be optimized for the GPU.
 
@@ -45,24 +46,24 @@ The 2 of the above functions are only a small set of examples of the functions w
 
 ### High-level Computer Vision pipelines ###
 
-<!---
+
 - **Feature extraction** : Often involves very parallelizable processes such as gradient calculation accross all pixels of the image.
 ![Feature extraction](./readme_data/corners.png "Feature extraction")
 - **Image classification** : Apply parallelization in the space of machine learning to classify images. One approach to speed up learning using parallel computation would be to build the *dictionary* of visual words in parallel on the GPU. In addition, if left with time, we plan to implement a GPU-specific mean clustering algorithm that does gradient descent over all points to be clustered in parallel. More details in this paper (http://koen.me/research/pub/vandesande-itm2011-VisualCategorizationGPU.pdf).
--->
+
 ![classification](./readme_data/classification.png "classification")
-<!---
+
 - **Image stitching** : Using the parallel versions of low-level functions, image stitching (used extensively in SLAM, or even on your phones to create panoramas!) can be made to run much faster.
 ![panorama](./readme_data/panorama.png "panorama")
 - **HIGHLIGHT : Real time Stereo matching on the GPU using CUDA** : Implementation of real-time dense stereo matching that leverages local methods (that exploit SIMD and spatial locality inherent in image data), parallelized-dynamic programming over all epipolar lines and post-processing. More info at http://cadcamcae.eafit.edu.co/documents/09_09_2009_Congote_etal_TV_stereo_depthmap_CUDA.pdf
 ![3d](./readme_data/3d.png "3d")
 - If left with time, we plan to try to **improve the resolution and quality of kinect depth maps** by fusing results from our stereo matching pipeline with ASIC-implemented depth estimation on the Kinect. More details on (http://file.scirp.org/pdf/OJAppS_2013012215594588.pdf)
--->
+
 
 ## The Challenge ##
-<!---
+
 The most challenging aspect of this project should be implementing and optimizing **Real Time Stereo matching on the GPU** and if left with time, **Bag-of-words based image classification on the GPU with fully parallel mean shift clustering algorithm**. They will require explicit use of global and shared GPU memory and synchronization across highly parallel pieces of code. Other challenges include optimizing otherwise-standard CV algorithms for SIMD and multicore execution while preserving insruction stream coherence and cache locality. In addition, setting flexible parameters for parallel work distribution, that best suit the user's hardware, could also require a lot of testing.
--->
+
 The most challenging aspect of this project should be implementing and optimizing **Bag-of-words based image classification on the GPU with fully parallel mean shift clustering algorithm**. They will require explicit use of global and shared GPU memory and synchronization across highly parallel pieces of code. Other challenges include optimizing otherwise-standard CV algorithms for SIMD and multicore execution while preserving insruction stream coherence and cache locality. In addition, setting flexible parameters for parallel work distribution, that best suit the user's hardware, could also require a lot of testing.
 
 ## Resources ##
@@ -113,7 +114,7 @@ For our depth camera (required for the *Hope to achieve* goals), we chose the Ki
 
 - **Image Classification Pipeline:** Our prototype achieves around 60% accuracy for labeling images out of 8 categories with our test-training set. 
 
-<!---
+
 - **Stereo Matching Pipeline:**
     - Finding Epipolar lines in stereo pair                                 
 ![Epipolar lines](./readme_data/1.1i.jpg "Epipolar lines")
